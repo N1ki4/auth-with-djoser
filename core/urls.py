@@ -15,8 +15,19 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from rest_framework_simplejwt.views import(
+    TokenObtainPairView,
+    TokenRefreshView,
+)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('network.urls')),
+
+    # Rest framework url
+    path('api/auth/', include('rest_framework.urls', namespace='rest_framework')),
+
+    # JWT Endpoints
+    path('auth-jwt/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('auth-jwt-refresh/', TokenRefreshView.as_view(), name='token_refresh'),
 ]
