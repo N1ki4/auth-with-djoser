@@ -25,9 +25,9 @@ urlpatterns = [
     path('', include('network.urls')),
 
     # Rest framework url
-    path('api/auth/', include('rest_framework.urls', namespace='rest_framework')),
+    path('api-auth/', include('rest_framework.urls')),
 
-    # JWT Endpoints
-    path('auth-jwt/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
-    path('auth-jwt-refresh/', TokenRefreshView.as_view(), name='token_refresh'),
+    # Djoser endpoints
+    path('auth/', include('djoser.urls')),
+    path('auth/', include('djoser.urls.jwt')),
 ]
